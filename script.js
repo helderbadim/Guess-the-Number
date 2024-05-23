@@ -43,9 +43,9 @@ let secretNumber = Math.trunc(Math.random() * 20) + 1;
 
 let score = 20;
 let highScore = 0;
-const displayMessage = function(message) {
+const displayMessage = function (message) {
   document.querySelector(`.message`).textContent = message;
-}
+};
 document.querySelector(`.check`).addEventListener(`click`, function () {
   const guess = Number(document.querySelector(`.guess`).value);
   console.log(guess, typeof guess);
@@ -53,7 +53,7 @@ document.querySelector(`.check`).addEventListener(`click`, function () {
   //When there is no input
   if (!guess) {
     //if is not a true value, such as 0, or it is false, this block will be executed
-   displayMessage(`⛔ No number!`);
+    displayMessage(`⛔ No number!`);
 
     //When player wins
   } else if (guess === secretNumber) {
@@ -65,25 +65,21 @@ document.querySelector(`.check`).addEventListener(`click`, function () {
       highScore = score;
       document.querySelector(`.highscore`).textContent = highScore;
     }
-    
-  //when the number is different
-  } else if (guess !== secretNumber) {
-    if (guess > 1){
-      displayMessage(guess > secretNumber ? ` 📈 Too high!` : `📉 Too low!`);}
-      score--;
-      document.querySelector(`.score`) = score;
-    } else {
-      displayMessage(`😞 You lost the game!`);
-      document.querySelector(`.score`).textContent = 0;
-    }
-  })
 
-    
-    
-  
-  
-    
-    //When number is too high
+    //when the number is different
+  } else if (guess !== secretNumber) {
+    if (score > 1) {
+      displayMessage(guess > secretNumber ? '📈 Too high!' : '📉 Too low!');
+      score--;
+      document.querySelector('.score').textContent = score;
+    } else {
+      displayMessage('💥 You lost the game!');
+      document.querySelector('.score').textContent = 0;
+    }
+  }
+});
+
+//When number is too high
 //   } else if (guess > secretNumber) {
 //     if (score > 1) {
 //       document.querySelector(`.message`).textContent = ` 📈 Too high!`;
@@ -106,7 +102,6 @@ document.querySelector(`.check`).addEventListener(`click`, function () {
 //   }
 // });
 
-// solution
 document.querySelector(`.again`).addEventListener(`click`, function () {
   score = 20;
   secretNumber = Math.trunc(Math.random() * 20) + 1;
